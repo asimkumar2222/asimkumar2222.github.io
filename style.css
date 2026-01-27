@@ -1,0 +1,491 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+/* Header */
+header {
+    background: linear-gradient(to right, #4a00e0, #8e2de2);
+    color: white;
+    padding: 25px 30px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.subtitle {
+    opacity: 0.9;
+    font-size: 1.1em;
+}
+
+/* Controls */
+.app-controls {
+    padding: 20px 30px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+}
+
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: #4a00e0;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #3a00b0;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #545b62;
+}
+
+.btn-action {
+    background: #28a745;
+    color: white;
+    padding: 10px 20px;
+}
+
+.btn-action:hover {
+    background: #218838;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.filter-section {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+}
+
+.filter-section input,
+.filter-section select {
+    padding: 10px;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.filter-section input {
+    width: 200px;
+}
+
+/* Status Bar */
+.status-bar {
+    padding: 15px 30px;
+    background: #e9ecef;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.status {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.status.connected {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status.connected i {
+    color: #28a745;
+}
+
+.status.disconnected {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.status.disconnected i {
+    color: #dc3545;
+}
+
+.device-info {
+    font-family: monospace;
+    background: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+}
+
+/* Main Content */
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 30px;
+    min-height: 400px;
+}
+
+.devices-panel,
+.characteristics-panel {
+    background: white;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.devices-panel h2,
+.characteristics-panel h2 {
+    padding: 20px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Device List */
+.device-list,
+.services-list {
+    height: 350px;
+    overflow-y: auto;
+}
+
+.device-item,
+.service-item,
+.characteristic-item {
+    padding: 15px 20px;
+    border-bottom: 1px solid #dee2e6;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.device-item:hover,
+.service-item:hover,
+.characteristic-item:hover {
+    background: #f8f9fa;
+}
+
+.device-item.selected {
+    background: #e3f2fd;
+    border-left: 4px solid #2196f3;
+}
+
+.device-name {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.device-id {
+    font-family: monospace;
+    color: #666;
+    font-size: 12px;
+}
+
+.device-rssi {
+    float: right;
+    color: #666;
+}
+
+.service-name {
+    font-weight: 600;
+    color: #2196f3;
+}
+
+.characteristic-properties {
+    margin-top: 8px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.property-badge {
+    padding: 4px 10px;
+    background: #e9ecef;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.property-badge.read {
+    background: #d4edda;
+    color: #155724;
+}
+
+.property-badge.write {
+    background: #cce5ff;
+    color: #004085;
+}
+
+.property-badge.notify {
+    background: #fff3cd;
+    color: #856404;
+}
+
+/* Interaction Panel */
+.interaction-panel {
+    padding: 30px;
+    border-top: 2px solid #dee2e6;
+}
+
+.interaction-controls {
+    background: white;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    padding: 25px;
+    margin-top: 20px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.input-group select,
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+/* Value Section */
+.value-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.value-input,
+.value-display {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+}
+
+.value-display {
+    background: #e3f2fd;
+}
+
+.value-box {
+    min-height: 80px;
+    background: white;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px 0;
+    font-family: monospace;
+    word-break: break-all;
+}
+
+.value-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #666;
+    margin-top: 10px;
+}
+
+/* Notification Log */
+.notification-log {
+    margin-top: 30px;
+}
+
+.notification-list {
+    height: 200px;
+    overflow-y: auto;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.notification-item {
+    padding: 10px;
+    border-bottom: 1px solid #dee2e6;
+    font-family: monospace;
+    font-size: 14px;
+}
+
+.notification-item time {
+    color: #666;
+    font-size: 12px;
+}
+
+/* Empty States */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #6c757d;
+}
+
+.empty-state i {
+    font-size: 48px;
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+/* Footer */
+footer {
+    padding: 20px 30px;
+    background: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+    text-align: center;
+    color: #6c757d;
+}
+
+.hint {
+    margin-top: 10px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 0;
+    width: 80%;
+    max-width: 800px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.modal-header {
+    padding: 20px;
+    background: linear-gradient(to right, #4a00e0, #8e2de2);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close {
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.modal-body {
+    padding: 20px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.modal-body pre {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .value-section {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .app-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .filter-section {
+        margin-left: 0;
+        flex-direction: column;
+    }
+    
+    .filter-section input {
+        width: 100%;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .btn {
+        justify-content: center;
+    }
+}
