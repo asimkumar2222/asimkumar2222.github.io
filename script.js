@@ -508,5 +508,3 @@ class BLEScanner {
         
         return charNames[uuid.toLowerCase()] || `Characteristic (${uuid})`;
     }
-
-   
