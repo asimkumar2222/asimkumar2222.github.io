@@ -1,8 +1,142 @@
-<html>
-  <head>
-    <title>initial page</>
-  </head>
-    <body>
-      Test
-    </body>
-    </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLE Device Scanner</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-bluetooth-b"></i> BLE Device Scanner</h1>
+            <p class="subtitle">Scan for Bluetooth Low Energy devices and interact with their characteristics</p>
+        </header>
+
+        <div class="app-controls">
+            <button id="scanBtn" class="btn btn-primary">
+                <i class="fas fa-search"></i> Scan for Devices
+            </button>
+            <button id="disconnectBtn" class="btn btn-secondary" disabled>
+                <i class="fas fa-unlink"></i> Disconnect
+            </button>
+            <div class="filter-section">
+                <input type="text" id="filterName" placeholder="Filter by name...">
+                <select id="filterService">
+                    <option value="">All Services</option>
+                    <option value="battery_service">Battery Service</option>
+                    <option value="heart_rate">Heart Rate</option>
+                    <option value="device_information">Device Information</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="status-bar">
+            <div id="connectionStatus" class="status disconnected">
+                <i class="fas fa-circle"></i> Not Connected
+            </div>
+            <div id="deviceInfo" class="device-info">No device connected</div>
+        </div>
+
+        <div class="main-content">
+            <div class="devices-panel">
+                <h2><i class="fas fa-list"></i> Discovered Devices</h2>
+                <div id="deviceList" class="device-list">
+                    <div class="empty-state">
+                        <i class="fas fa-bluetooth"></i>
+                        <p>Click "Scan for Devices" to discover nearby BLE devices</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="characteristics-panel">
+                <h2><i class="fas fa-cogs"></i> Services & Characteristics</h2>
+                <div id="servicesList" class="services-list">
+                    <div class="empty-state">
+                        <i class="fas fa-plug"></i>
+                        <p>Connect to a device to view services and characteristics</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="interaction-panel">
+            <h2><i class="fas fa-terminal"></i> Characteristic Interaction</h2>
+            <div class="interaction-controls">
+                <div class="input-group">
+                    <label for="characteristicSelect">Select Characteristic:</label>
+                    <select id="characteristicSelect" disabled>
+                        <option value="">Select a characteristic first</option>
+                    </select>
+                </div>
+                
+                <div class="action-buttons">
+                    <button id="readBtn" class="btn btn-action" disabled>
+                        <i class="fas fa-book"></i> Read Value
+                    </button>
+                    <button id="writeBtn" class="btn btn-action" disabled>
+                        <i class="fas fa-pen"></i> Write Value
+                    </button>
+                    <button id="notifyBtn" class="btn btn-action" disabled>
+                        <i class="fas fa-bell"></i> Start Notification
+                    </button>
+                    <button id="stopNotifyBtn" class="btn btn-action" disabled>
+                        <i class="fas fa-bell-slash"></i> Stop Notification
+                    </button>
+                </div>
+
+                <div class="value-section">
+                    <div class="value-input">
+                        <label for="writeValue">Value to Write (Hex):</label>
+                        <input type="text" id="writeValue" placeholder="e.g., 01AB" disabled>
+                        <small>Enter hexadecimal values (0-9, A-F)</small>
+                    </div>
+                    
+                    <div class="value-display">
+                        <label>Current Value:</label>
+                        <div id="currentValue" class="value-box">
+                            <span class="placeholder">No value read yet</span>
+                        </div>
+                        <div class="value-info">
+                            <span id="valueHex">Hex: -</span>
+                            <span id="valueAscii">ASCII: -</span>
+                            <span id="valueDecimal">Decimal: -</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="notification-log">
+                    <h3><i class="fas fa-history"></i> Notification Log</h3>
+                    <div id="notificationList" class="notification-list">
+                        <div class="empty-state">
+                            <i class="fas fa-comment-alt"></i>
+                            <p>Start notifications to see incoming data here</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Web Bluetooth API | Works in Chrome/Edge 56+ | HTTPS required</p>
+            <p class="hint"><i class="fas fa-info-circle"></i> Note: Some browsers may require a user gesture to start scanning</p>
+        </footer>
+    </div>
+
+    <!-- Modal for Service/Characteristic Details -->
+    <div id="detailsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Details</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <pre id="modalDetails"></pre>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
