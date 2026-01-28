@@ -1,3 +1,15 @@
+// Create global scanner instance
+let scanner;
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    scanner = new BLEScanner();
+    
+    // Test: Add direct click handler to verify event binding
+    document.getElementById('scanBtn').addEventListener('click', () => {
+        console.log("Scan button clicked directly!");
+    });
+});
 class BLEScanner {
     constructor() {
         this.device = null;
