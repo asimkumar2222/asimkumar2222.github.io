@@ -69,6 +69,8 @@ class BLEScanner {
     }
 
     async checkBluetoothSupport() {
+        console.log(0); // This works fine
+        console.log("Starting async function CheckBLE Support...");
         if (!navigator.bluetooth) {
             this.showError('Web Bluetooth API is not supported in this browser. Try Chrome/Edge 56+');
             this.scanBtn.disabled = true;
@@ -85,6 +87,8 @@ class BLEScanner {
     }
 
     async scanDevices() {
+        console.log(0); // This works fine
+        console.log("Starting async function ScanDevices...");
         if (this.isScanning) return;
         
         try {
