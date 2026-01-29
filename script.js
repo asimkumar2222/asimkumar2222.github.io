@@ -120,8 +120,8 @@ class BLEScanner {
             
             const options = {
                 filters: filters,
-                optionalServices: ['battery_service', 'device_information', 'generic_access','01020304-0506-0708-0900-0a0b0c0dd0e0f','01020304-0506-0700-8090-00a0b0c0c0e0a'],
-                acceptAllDevices: false
+                optionalServices: ['battery_service', 'device_information', 'generic_access'],
+                acceptAllDevices: true
             };
             
             this.device = await navigator.bluetooth.requestDevice(options);
