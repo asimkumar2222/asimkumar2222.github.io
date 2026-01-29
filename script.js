@@ -120,7 +120,7 @@ class BLEScanner {
             
             const options = {
                 filters: filters,
-                optionalServices: ['battery_service', 'device_information', 'generic_access','010203040506070809000A0B0C0DD0E0F','0102030405060700809000A0B0C0D0E0A','11223344556677889900AABBCCDDEEFB'],
+                optionalServices: ['battery_service', 'device_information', 'generic_access','01020304-0506-0708-0900-0a0b0c0dd0e0f','01020304-0506-0700-8090-00a0b0c0c0e0a'],
                 acceptAllDevices: false
             };
             
