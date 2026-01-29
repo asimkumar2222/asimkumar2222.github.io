@@ -119,6 +119,7 @@ class BLEScanner {
             }
             
             const options = {
+                optionalServices: ['battery_service', 'device_information', 'generic_access'],
                 acceptAllDevices: true
             };
                 //filters: filters,
