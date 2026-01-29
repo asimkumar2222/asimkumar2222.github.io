@@ -119,7 +119,7 @@ class BLEScanner {
             }
             
             const options = {
-
+                optionalServices: ['null'],
                 acceptAllDevices: true
             };
                 //filters: filters,
