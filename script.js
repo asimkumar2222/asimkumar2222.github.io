@@ -119,11 +119,11 @@ class BLEScanner {
             }
             
             const options = {
-                //filters: filters,
-                //optionalServices: ['battery_service', 'device_information', 'generic_access'],
+
                 acceptAllDevices: true
             };
-            
+                //filters: filters,
+                //optionalServices: ['battery_service', 'device_information', 'generic_access'],
             this.device = await navigator.bluetooth.requestDevice(options);
             
             this.device.addEventListener('gattserverdisconnected', () => {
